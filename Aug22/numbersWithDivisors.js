@@ -11,12 +11,12 @@ function procArrInt(listNum) {
         return num >= 2
     }
     
-    function getDivisorsCnt(n) {
+    function numOfDivisors(n) {
 
         var numDivisors = 1
         var factor = 2
 
-        while (factor * factor <=n) {
+        while (factor * factor <= n) {
             if (n % factor === 0) {
                 var exponent = 0
                 do {
@@ -34,38 +34,24 @@ function procArrInt(listNum) {
     }
 
     for (let i = 0; i < listNum.length; i++) {
-        // if (primeChecker(listNum[i]) == true) {
-        //     totalPrimes++
-        // }
-        // console.log("Divisor Function: [" + listNum[i] + ", " + getDivisorsCnt(listNum[i]) + "]") 
-        if (getDivisorsCnt(listNum[i]) === 2) {
+        if (numOfDivisors(listNum[i]) === 2) {
             totalPrimes++
         } else {
-
-            // this is the broken part:
-            let currentDivs = getDivisorsCnt(listNum[i])
+            let currentDivs = numOfDivisors(listNum[i])
             if (currentDivs === highestDivs) {
                 highestArr.push(listNum[i])
             } else if (currentDivs > highestDivs) {
                 highestArr = []
-            } else {
                 highestDivs = currentDivs
                 highestArr.push(listNum[i])
             }
         }    
     }
 
-
-
-
-    // (2) total prime numbers recieved
-
-    // (3) a list [(a), (b)]
-        //(a) = The highest amount of divisors that a certain number (or numbers) of the given array have
-        // (b) = A sorted list with the numbers that has the Largest amount of divisors. This list may have only one number.
-
-
-        return "[" + totalNums + ", " + totalPrimes + ", [" + highestDivs + ", [" + highestArr + "]]"
+    // highestArr.sort(function (a, b) {
+    //     return a - b
+    // })
+    return [totalNums, totalPrimes, [highestDivs, highestArr.sort((a, b) => a - b) ] ]
 }
 
 
