@@ -7,6 +7,9 @@ function mirror(text){
         if (eachWord[i].length > starsNum) {
             starsNum = eachWord[i].length
         }
+    }
+    
+    for (let i = 0; i < eachWord.length; i++) {
         let thisWord = eachWord[i].split("").reverse().join("")
         let spaceNum = starsNum - thisWord.length
         let spaces = new Array(spaceNum + 1).join(" ")
@@ -19,4 +22,13 @@ function mirror(text){
 
 }
 
-console.log(mirror('Breakfast Munching Wombat Lady'), '*********\n* olleH *\n* dlroW *\n*********')
+console.log(mirror('Breakfast Munching Wombat Daddy'), '*********\n* olleH *\n* dlroW *\n*********')
+
+
+// stole the following code from the solution by user arhigod to learn how the syntax works
+function mirrorOfArhigod(s){
+    let a = s.split(' ');
+    let m = Math.max(...a.map(x=>x.length));
+    a = a.map(x=>'* '+[...x].reverse().join('')+' '.repeat(m-x.length)+' *');
+    return ['*'.repeat(m+4),...a,'*'.repeat(m+4)].join('\n');
+  }
